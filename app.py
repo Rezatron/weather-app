@@ -16,32 +16,35 @@ def fetch_weather_data(city_name):
     }
     response = requests.get(url, params=params)
     response.raise_for_status()  # Raise an exception for 4xx or 5xx status codes
+
+    print(response.json())
     return response.json()
 
 # Process weather data function
 def process_weather_data(weather_data):
-    processed_data = []
-    city_name = weather_data['city']['name']
-    city_sunrise = weather_data['city']['sunrise']
-    city_sunset = weather_data['city']['sunset']
-
+    processed_data = {}
     for forecast in weather_data['list']:
         date_time = forecast['dt_txt']
+        date, time = date_time.split(' ')
         temperature = forecast['main']['temp']
         feels_like = forecast['main']['feels_like']
         humidity = forecast['main']['humidity']
         wind_speed = forecast['wind']['speed']
         weather_description = forecast['weather'][0]['description']
 
-        processed_data.append({
-            'date_time': date_time,
+        # Group by date
+        if date not in processed_data:
+            processed_data[date] = []
+
+        processed_data[date].append({
+            'time': time,
             'temperature': temperature,
             'feels_like': feels_like,
             'humidity': humidity,
             'wind_speed': wind_speed,
             'weather_description': weather_description,
         })
-    return processed_data
+    return [{'date': key, 'hourly': value} for key, value in processed_data.items()]
 
 
 
