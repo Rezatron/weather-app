@@ -60,15 +60,20 @@ button {
     position: absolute;
     top: 100%;
     left: 0;
-    width: 100%;
+    width: 100vw;
     background-color: white;
     border: 1px solid #ccc;
     border-top: none;
     border-radius: 0 0 5px 5px;
+    flex-wrap: wrap;
 }
 
 .day:hover .hourly-forecast {
-    display: block;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    /* Adjust column width as needed */
+    gap: 10px;
+    padding: 10px;
 }
 
 .hour {
@@ -77,6 +82,7 @@ button {
     padding: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 img.weather-icon {
     width: 50px;
