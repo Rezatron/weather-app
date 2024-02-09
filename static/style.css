@@ -6,8 +6,8 @@ body {
 }
 
 .container {
-    max-width: 600px;
-    margin: 50px auto;
+    max-width: 100%;
+    margin: 10px 0;
     padding: 0 20px;
 }
 
@@ -46,8 +46,9 @@ button {
 .day {
     margin-bottom: 20px;
     border: 1px solid #ccc;
-    padding: 10px;
     transition: all 0.3s ease;
+    position: relative;
+    width: calc(17% - 20px);
 }
 
 .day:hover {
@@ -56,6 +57,14 @@ button {
 
 .hourly-forecast {
     display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    border-radius: 0 0 5px 5px;
 }
 
 .day:hover .hourly-forecast {
@@ -63,5 +72,28 @@ button {
 }
 
 .hour {
-    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+img.weather-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.weather-info {
+    margin-top: 10px;
+}
+
+.weather-info p {
+    margin: 5px 0;
+}
+
+.forecast {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 0px;
 }

@@ -24,8 +24,9 @@
                 <div class="hourly-forecast">
                     {% for hourly_entry in day_entry.hourly %}
                     <div class="hour">
+                        <img src="{{ url_for('static', filename=hourly_entry.weather_icon) }}" alt="Weather Icon" class="weather-icon">
                         <p>{{ hourly_entry.time }}</p>
-                        <p>Weather: {{ hourly_entry.description }}</p>
+                        <p>{{ hourly_entry.weather_description }}</p>
                         <p>Temperature: {{ hourly_entry.temperature }}°C</p>
                         <p>Feels Like: {{ hourly_entry.feels_like }}°C</p>
                         <p>Humidity: {{ hourly_entry.humidity }}%</p>

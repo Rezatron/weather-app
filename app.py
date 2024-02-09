@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, send_from_directory
 import requests
 from datetime import datetime, timezone
 import os 
+from utils import get_weather_icon
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -33,6 +34,8 @@ def process_weather_data(weather_data):
         humidity = forecast['main']['humidity']
         wind_speed = forecast['wind']['speed']
         weather_description = forecast['weather'][0]['description']
+        weather_icon_code = forecast['weather'][0]['icon']
+        weather_icon = get_weather_icon(weather_icon_code)
 
         # Group by date
         if date not in processed_data:
@@ -45,12 +48,9 @@ def process_weather_data(weather_data):
             'humidity': humidity,
             'wind_speed': wind_speed,
             'weather_description': weather_description,
+            'weather_icon': weather_icon,  # Include weather icon path
         })
     return [{'date': key, 'hourly': value} for key, value in processed_data.items()]
-
-
-print(process_weather_data)
-
 
 
 @app.route('/forecast', methods=['POST'])
@@ -59,9 +59,6 @@ def forecast():
     try:
         weather_data = fetch_weather_data(city_name)
         processed_data = process_weather_data(weather_data)
-        
-        # Register the custom filter before rendering the template
-        app.jinja_env.filters['custom_date_format'] = custom_date_format
         
         return render_template('index.html', forecast=processed_data, city=city_name)
     except requests.exceptions.HTTPError as http_err:
@@ -84,6 +81,11 @@ def favicon():
 @app.template_filter('custom_date_format')
 def custom_date_format(date):
     return date.strftime("%A %d")  # Format: Tuesday 8
+
+
+@app.route('/')
+def home():
+    return render_template('index.html')
 
 
 if __name__ == "__main__":
