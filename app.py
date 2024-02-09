@@ -26,6 +26,8 @@ def process_weather_data(weather_data):
     for forecast in weather_data['list']:
         date_time = forecast['dt_txt']
         date, time = date_time.split(' ')
+        # Convert date string to datetime object
+        date = datetime.strptime(date, '%Y-%m-%d')
         temperature = forecast['main']['temp']
         feels_like = forecast['main']['feels_like']
         humidity = forecast['main']['humidity']
@@ -47,14 +49,9 @@ def process_weather_data(weather_data):
     return [{'date': key, 'hourly': value} for key, value in processed_data.items()]
 
 
-
 print(process_weather_data)
 
 
-
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 @app.route('/forecast', methods=['POST'])
 def forecast():
@@ -62,6 +59,10 @@ def forecast():
     try:
         weather_data = fetch_weather_data(city_name)
         processed_data = process_weather_data(weather_data)
+        
+        # Register the custom filter before rendering the template
+        app.jinja_env.filters['custom_date_format'] = custom_date_format
+        
         return render_template('index.html', forecast=processed_data, city=city_name)
     except requests.exceptions.HTTPError as http_err:
         if http_err.response.status_code == 404:
@@ -71,11 +72,19 @@ def forecast():
     except requests.exceptions.RequestException as e:
         return render_template('index.html', error="Error fetching weather data. Please try again.")
 
+
 @app.route('/favicon.ico')
 def favicon():
     # Return the favicon.ico file from the static directory
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
+
+
+# Custom filter for date formatting
+@app.template_filter('custom_date_format')
+def custom_date_format(date):
+    return date.strftime("%A %d")  # Format: Tuesday 8
+
 
 if __name__ == "__main__":
     app.run(debug=True)

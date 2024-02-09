@@ -43,6 +43,25 @@ button {
 }
 
 /* Styles for individual forecast items */
-li {
+.day {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.day:hover {
+    transform: scale(1.1);
+}
+
+.hourly-forecast {
+    display: none;
+}
+
+.day:hover .hourly-forecast {
+    display: block;
+}
+
+.hour {
     margin-bottom: 10px;
 }
