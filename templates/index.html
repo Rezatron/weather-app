@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather Forecast App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 
 <body>
@@ -16,31 +18,42 @@
             <input type="text" id="city" name="city" required>
             <button type="submit">Get Forecast</button>
         </form>
-        <div class="forecast">
-            {% if forecast %}
-            {% for day_entry in forecast %}
-            <div class="day">
-                <h2>{{ day_entry.date | custom_date_format }}</h2>
-                <div class="hourly-forecast">
-                    {% for hourly_entry in day_entry.hourly %}
-                    <div class="hour">
-                        <img src="{{ url_for('static', filename=hourly_entry.weather_icon) }}" alt="Weather Icon" class="weather-icon">
-                        <p>{{ hourly_entry.time }}</p>
-                        <p>{{ hourly_entry.weather_description }}</p>
-                        <p>Temperature: {{ hourly_entry.temperature }}°C</p>
-                        <p>Feels Like: {{ hourly_entry.feels_like }}°C</p>
-                        <p>Humidity: {{ hourly_entry.humidity }}%</p>
-                        <p>Wind Speed: {{ hourly_entry.wind_speed }} m/s</p>
+        <div class="city-container">
+            {% if city %}
+            <p class="city">{{ city }}</p>
+            {% endif %}
+            <div class="forecast">
+                {% if forecast %}
+                {% for day_entry in forecast %}
+                <div class="day">
+                    <h2>{{ day_entry.date | custom_date_format }}</h2>
+                    <div class="hourly-forecast">
+                        {% for hourly_entry in day_entry.hourly %}
+                        <div class="hour">
+                            <img src="{{ url_for('static', filename=hourly_entry.weather_icon) }}" alt="Weather Icon"
+                                class="weather-icon">
+                            <p>{{ hourly_entry.time }}</p>
+                            <p>{{ hourly_entry.weather_description }}</p>
+                            <p>Temperature: {{ hourly_entry.temperature }}°C</p>
+                            <p>Feels Like: {{ hourly_entry.feels_like }}°C</p>
+                            <p>Humidity: {{ hourly_entry.humidity }}%</p>
+                            <p>Wind Speed: {{ hourly_entry.wind_speed }} m/s</p>
+                        </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                 </div>
+                {% endfor %}
+                {% endif %}
             </div>
-            {% endfor %}
+            {% if error %}
+            <p class="error">{{ error }}</p>
             {% endif %}
         </div>
-        {% if error %}
-        <p class="error">{{ error }}</p>
-        {% endif %}
+    </div>
+    <div class="dropdown-container">
+        <div class="hourly-forecast">
+            <!-- Dropdown menu content -->
+        </div>
     </div>
 </body>
 

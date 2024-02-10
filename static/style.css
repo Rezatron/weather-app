@@ -42,6 +42,11 @@ button {
     color: red;
 }
 
+
+.city {
+    font-size: 50px;
+}
+
 /* Styles for individual forecast items */
 .day {
     margin-bottom: 20px;
@@ -49,31 +54,34 @@ button {
     transition: all 0.3s ease;
     position: relative;
     width: calc(17% - 20px);
+
+}
+*{
+    font-family: 'Raleway', Arial, sans-serif;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 500;
+        letter-spacing: 1px;
 }
 
-.day:hover {
-    transform: scale(1.1);
-}
-
+/* Apply styles to the hourly forecast dropdown */
 .hourly-forecast {
     display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100vw;
-    background-color: white;
+    position: fixed;
+    left: 0px;
+    max-width: calc(100vw - 20px);
+    background-color: rgb(11, 227, 251);
     border: 1px solid #ccc;
     border-top: none;
     border-radius: 0 0 5px 5px;
-    flex-wrap: wrap;
+    gap: 10px;
+    /* Add gap between grid items */
 }
 
+/* Show the hourly forecast when hovering over .day */
 .day:hover .hourly-forecast {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    /* Adjust column width as needed */
-    gap: 10px;
-    padding: 10px;
 }
 
 .hour {
@@ -82,7 +90,6 @@ button {
     padding: 15px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 
 img.weather-icon {
     width: 50px;
@@ -103,3 +110,21 @@ img.weather-icon {
     justify-content: flex-start;
     gap: 0px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

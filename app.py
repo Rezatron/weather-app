@@ -69,12 +69,10 @@ def forecast():
     except requests.exceptions.RequestException as e:
         return render_template('index.html', error="Error fetching weather data. Please try again.")
 
-
 @app.route('/favicon.ico')
 def favicon():
     # Return the favicon.ico file from the static directory
-    return send_from_directory(os.path.join(app.root_path, 'static'),
-                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
+    return send_from_directory('static', 'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
 
 # Custom filter for date formatting
