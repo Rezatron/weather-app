@@ -53,14 +53,34 @@ def process_weather_data(weather_data):
     return [{'date': key, 'hourly': value} for key, value in processed_data.items()]
 
 
+
+
+
+
+def fetch_images(city_name):
+    unsplash_access_key = '7ov98QaZqdjDvM0hqxtzAeA8dr9A2HTUcoy2uu_8NKw'
+    url = f'https://api.unsplash.com/photos/random?query={city_name}&client_id={unsplash_access_key}'
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return data['urls']['regular']
+    else:
+        return None
+
+
+
+
+
 @app.route('/forecast', methods=['POST'])
 def forecast():
     city_name = request.form['city']
     try:
         weather_data = fetch_weather_data(city_name)
         processed_data = process_weather_data(weather_data)
-        
-        return render_template('index.html', forecast=processed_data, city=city_name)
+
+        image_url = fetch_images(city_name)  # IMAGE FOR UNSPLASH API
+
+        return render_template('index.html', forecast=processed_data, city=city_name, image_url=image_url)
     except requests.exceptions.HTTPError as http_err:
         if http_err.response.status_code == 404:
             return render_template('index.html', error=f"Sorry, we couldn't find weather information for {city_name}. Please check the city name and try again.")
@@ -84,6 +104,22 @@ def custom_date_format(date):
 @app.route('/')
 def home():
     return render_template('index.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 if __name__ == "__main__":

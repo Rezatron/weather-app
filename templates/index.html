@@ -7,7 +7,6 @@
     <title>Weather Forecast App</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
-    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 
 <body>
@@ -50,11 +49,11 @@
             {% endif %}
         </div>
     </div>
-    <div class="dropdown-container">
-        <div class="hourly-forecast">
-            <!-- Dropdown menu content -->
-        </div>
+    {% if image_url %}
+    <div class="city-image">
+        <img src="{{ image_url }}" alt="City Image">
     </div>
+    {% endif %}
 </body>
 
 </html>
