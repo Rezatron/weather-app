@@ -1,0 +1,1 @@
+document.body.style.backgroundImage = `url(${image_url})`;

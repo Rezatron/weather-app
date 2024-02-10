@@ -3,6 +3,10 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #f7f7f7;
 }
 
 .container {
@@ -42,7 +46,6 @@ button {
     color: red;
 }
 
-
 .city {
     font-size: 50px;
 }
@@ -54,14 +57,14 @@ button {
     transition: all 0.3s ease;
     position: relative;
     width: calc(17% - 20px);
-
 }
-*{
+
+* {
     font-family: 'Raleway', Arial, sans-serif;
-        text-align: center;
-        text-transform: uppercase;
-        font-weight: 500;
-        letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 1px;
 }
 
 /* Apply styles to the hourly forecast dropdown */
@@ -70,12 +73,14 @@ button {
     position: fixed;
     left: 0px;
     max-width: calc(100vw - 20px);
-    background-color: rgb(11, 227, 251);
-    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
     border-top: none;
     border-radius: 0 0 5px 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     gap: 10px;
-    /* Add gap between grid items */
+    padding: 10px;
+
 }
 
 /* Show the hourly forecast when hovering over .day */
@@ -83,6 +88,45 @@ button {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
+
+
+
+.day:hover {
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+}
+
+.day:hover:before,
+.day:hover:after {
+    width: 100%;
+    height: 100%;
+}
+
+.day:before,
+.day:after {
+    content: " ";
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    border: 0px solid #fff;
+    transition: all 1s;
+}
+
+.day:hover:before {
+    top: -1px;
+    left: -1px;
+    border-top: 5px solid black;
+    border-left: 5px solid black;
+}
+
+.day:hover:after {
+    bottom: -1px;
+    right: -1px;
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+}
+
+
 
 .hour {
     border: 1px solid #ccc;
@@ -110,21 +154,3 @@ img.weather-icon {
     justify-content: flex-start;
     gap: 0px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
