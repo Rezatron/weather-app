@@ -1,8 +1,20 @@
 /* Global styles */
-body {
-    font-family: Arial, sans-serif;
 
+
+body {
+    font-size:14px;
+    overflow: scroll;
 }
+
+* {
+    font-family: 'Raleway', Arial, sans-serif;
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+
 
 .parallax-container {
     position: fixed;
@@ -11,7 +23,8 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: -1
+    z-index: -1;
+
 }
 
 .parallax-image {
@@ -29,6 +42,8 @@ body {
     max-width: 100%;
     margin: 10px 0;
     padding: 0 20px;
+
+
 }
 
 h1,
@@ -75,13 +90,7 @@ button {
     width: calc(17% - 20px);
 }
 
-* {
-    font-family: 'Raleway', Arial, sans-serif;
-    text-align: center;
-    text-transform: uppercase;
-    font-weight: 500;
-    letter-spacing: 1px;
-}
+
 
 /* Apply styles to the hourly forecast dropdown */
 .hourly-forecast {
