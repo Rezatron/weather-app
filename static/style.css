@@ -103,7 +103,7 @@ button {
 .hourly-forecast {
     display: none;
     position: fixed;
-    left: 0px;
+    left: 28px;
     max-width: calc(100vw - 20px);
     background-color: #f7f7f7;
     border: 1px solid #ddd;
