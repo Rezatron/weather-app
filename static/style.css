@@ -1,9 +1,10 @@
 /* Global styles */
 
 
-body {
+html,body {
     font-size:14px;
-    overflow: scroll;
+
+
 }
 
 * {
@@ -17,26 +18,29 @@ body {
 
 
 .parallax-container {
+    /* Your parallax container styles */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow: scroll;
+    /* Set to auto to allow scrolling */
     z-index: -1;
-
 }
 
 .parallax-image {
+    /* Your parallax image styles */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    /* Adjust height as needed */
+    height: auto;
+    /* or set a specific height if necessary */
     object-fit: cover;
     transform: translateZ(0);
 }
-
 
 .container {
     max-width: 100%;
@@ -60,7 +64,7 @@ label {
 }
 
 input[type="text"] {
-    width: 100%;
+    width: 50%;
     padding: 10px;
     margin-top: 5px;
 }
@@ -88,7 +92,10 @@ button {
     transition: all 0.3s ease;
     position: relative;
     width: calc(17% - 20px);
+    background-color: rgba(255, 255, 255, 0.2);
+
 }
+
 
 
 
@@ -125,6 +132,7 @@ button {
 .day:hover:after {
     width: 100%;
     height: 100%;
+    transition: all 1s;
 }
 
 .day:before,
@@ -134,7 +142,7 @@ button {
     height: 10px;
     position: absolute;
     border: 0px solid #fff;
-    transition: all 1s;
+    
 }
 
 .day:hover:before {
@@ -149,6 +157,7 @@ button {
     right: -1px;
     border-bottom: 5px solid black;
     border-right: 5px solid black;
+
 }
 
 
