@@ -19,7 +19,7 @@ This is a simple Flask web application that provides weather forecast informatio
 
 ## Setup and installation
 
-1. Clone the repository: `git clone https://github.com/your_username/weather-forecast.git`
+1. Clone the repository: `git clone https://github.com/rezatron/weather-forecast.git`
 2. Install dependencies: `pip install -r requirements.txt`
 3. Obtain API keys for OpenWeatherMap and Unsplash and add them to the `app.py` file.
 4. Run the application: `python app.py`
