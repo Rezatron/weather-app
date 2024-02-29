@@ -36,7 +36,7 @@ html,body {
     left: 0;
     width: 100%;
     /* Adjust height as needed */
-    height: auto;
+    height: 100%;
     /* or set a specific height if necessary */
     object-fit: cover;
     transform: translateZ(0);
@@ -83,6 +83,7 @@ button {
 
 .city {
     font-size: 50px;
+    opacity: 0.8;
 }
 
 /* Styles for individual forecast items */
@@ -92,7 +93,7 @@ button {
     transition: all 0.3s ease;
     position: relative;
     width: calc(17% - 20px);
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.8);
 
 }
 
