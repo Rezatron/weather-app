@@ -8,7 +8,7 @@ app = Flask(__name__, static_url_path='/static')
 
 # Fetch weather data function
 def fetch_weather_data(city_name):
-    api_key = "f5e91c2037fade8e196c8b8b164ab309"  
+    api_key = "APIKEYHERE"  
     url = "http://api.openweathermap.org/data/2.5/forecast"
     params = {
         "q": city_name,
@@ -58,7 +58,7 @@ def process_weather_data(weather_data):
 
 
 def fetch_images(city_name):
-    unsplash_access_key = '7ov98QaZqdjDvM0hqxtzAeA8dr9A2HTUcoy2uu_8NKw'
+    unsplash_access_key = 'UNSPLASHKEYHERE'
     url = f'https://api.unsplash.com/photos/random?query={city_name}&client_id={unsplash_access_key}'
     response = requests.get(url)
     if response.status_code == 200:
